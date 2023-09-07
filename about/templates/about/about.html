@@ -1,0 +1,108 @@
+{% extends 'core/base.html' %}
+
+<!--titulo cambiante-->
+{% block title %}About{% endblock %}
+
+
+{% block background %}{% load static %}{% static 'core/img/spa.jpeg'%}{% endblock  %}
+{% block header %}
+<h1 class="display-3 text-white mb-3 animated slideInDown">Nosotros</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center text-uppercase">
+                            <li class="breadcrumb-item"><a href="{% url 'home'%}">MfFitness</a></li>
+                            <li class="breadcrumb-item text-white  active" aria-current="page">Nosotros</li>
+                            <li class="breadcrumb-item"><a href="{% url 'services'%}">Servicios</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'contact'%}">Contactanos</a></li>
+                        </ol>
+                    </nav>
+{% endblock  %}
+
+{% block content %}
+
+    <!-- About Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <h6 class="section-title text-start text-primary text-uppercase">Nosotros</h6>
+                    <h1 class="mb-4">Bienvenidos a <span class="text-primary text-uppercase">MfFitness</span></h1>
+                    <p class="mb-4">Un gimnasio spa con piscina es un refugio de bienestar que combina lo mejor de ambos mundos. En este oasis de salud, puedes esculpir tu cuerpo con equipos de vanguardia, clases de fitness emocionantes y entrenadores expertos, mientras que la piscina te brinda una vía refrescante para mantenerte en forma y liberar el estrés. Además, el spa te espera con masajes relajantes, tratamientos de belleza y zonas de relajación para mimar tu cuerpo y mente. Este espacio no solo te ayuda a alcanzar tus metas de acondicionamiento físico, sino que también te brinda una experiencia de bienestar completa y rejuvenecedora.</p>
+                    <div class="row g-3 pb-4">
+                        <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
+                            <div class="border rounded p-1">
+                                <div class="border rounded text-center p-4">
+                                    <i class="fa fa-users-cog fa-2x text-primary mb-2"></i>
+                                    <h2 class="mb-1" data-toggle="counter-up">5</h2>
+                                    <p class="mb-0">Colaboradores</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 wow fadeIn" data-wow-delay="0.5s">
+                            <div class="border rounded p-1">
+                                <div class="border rounded text-center p-4">
+                                    <i class="fa fa-users fa-2x text-primary mb-2"></i>
+                                    <h2 class="mb-1" data-toggle="counter-up">100</h2>
+                                    <p class="mb-0">Clientes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-6 text-end">
+                            <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="{% static 'core/img/spa2.jpeg' %}" style="margin-top: 25%;">
+                        </div>
+                        <div class="col-6 text-start">
+                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="{% static 'core/img/gym3.jpeg' %}">
+                        </div>
+                        <div class="col-6 text-end">
+                            <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="{% static 'core/img/piscina2.jpeg' %}">
+                        </div>
+                        <div class="col-6 text-start">
+                            <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="{% static 'core/img/baile3.jpeg'%}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <!-- Team Start -->
+      <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title text-center text-primary text-uppercase">Nuestro Equipo</h6>
+                <h1 class="mb-5">Conoce Nuestros <span class="text-primary text-uppercase">Colaboradores</span></h1>
+               
+            </div>
+            <div class="row g-4">
+                {% for person in team %}
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="rounded shadow overflow-hidden">
+                        <div class="position-relative">
+                            <img class="img-fluid" src="{{person.image.url}}" alt="">
+                            <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                <a class="btn btn-square btn-primary mx-1" href="{{person.urlFacebook}}"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href="{{person.urlInstagram}}"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4 mt-3">
+                            <h5 class="fw-bold mb-0">{{person.name}} {{person.lastname}}</h5>
+                            <small>{{person.position}}</small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+
+
+  
+
+
+{% endblock  %}

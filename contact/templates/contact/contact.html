@@ -1,0 +1,77 @@
+{% extends 'core/base.html' %}
+
+<!--titulo cambiante-->
+{% block title %}Contact{% endblock %}
+
+
+{% block background %}{% load static %}{% static 'core/img/baile2.webp'%}{% endblock  %}
+{% block header %}
+<h1 class="display-3 text-white mb-3 animated slideInDown">Contactanos</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center text-uppercase">
+                            <li class="breadcrumb-item"><a href="{% url 'home'%}">MfFitness</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'about'%}">Nosotros</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'services'%}">Servicios</a></li>
+                            <li class="breadcrumb-item text-white  active" aria-current="page">Contactanos</li>
+                        </ol>
+                    </nav>
+{% endblock  %}
+
+{% block content %}
+   <!-- Contact Start -->
+   <div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-primary text-uppercase">Contactanos</h6>
+            <h1 class="mb-5"><span class="text-primary text-uppercase">Envianos</span> un mensaje</h1>
+        </div>
+        <div class="row g-4">
+            
+            <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.773085258694!2d-78.4659958253923!3d-0.2728344353573969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d597d012d11779%3A0x437c39b336de0afa!2sGringo%20Huasi!5e0!3m2!1ses-419!2sec!4v1694066636614!5m2!1ses-419!2sec" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="col-md-6">
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <form action="" method="POST">
+                        {% csrf_token %} 
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{form.name}}
+                                    
+                                </div>
+                                {{form.name.errors}}
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{form.email}}
+                                </div>
+                                {{form.email.errors}}
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    {{form.message}}
+                                </div>
+                                {{form.mesagge.errors}}
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">enviar mensaje</button>
+                            </div>
+                            {% if 'ok' in request.GET %}
+                                <p><b> Su mensaje se ha enviado correctamente</b></p>
+                            {% elif 'fail' in request.GET %}
+                                <p><b> Ha ocurrido un error intente mas tarde</b></p>
+                             {% endif %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+
+
+{% endblock  %}

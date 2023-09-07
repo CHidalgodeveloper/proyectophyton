@@ -1,0 +1,68 @@
+{% extends 'core/base.html' %}
+
+<!--titulo cambiante-->
+{% block title %}Services{% endblock %}
+
+
+{% block background %}{% load static %}{% static 'core/img/spa3.webp'%}{% endblock  %}
+{% block header %}
+<h1 class="display-3 text-white mb-3 animated slideInDown">Servicios</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center text-uppercase">
+                            <li class="breadcrumb-item"><a href="{% url 'home'%}">MfFitness</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'about'%}">Nosotros</a></li>
+                            <li class="breadcrumb-item text-white  active" aria-current="page">Servicios</li>
+                            <li class="breadcrumb-item"><a href="{% url 'contact'%}">Contactanos</a></li>
+
+                        </ol>
+                    </nav>
+{% endblock  %}
+
+{% block content %}
+     <!-- Room Start -->
+     <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title text-center text-primary text-uppercase">Servicios</h6>
+                <h1 class="mb-5">Conoce Nuestros <span class="text-primary text-uppercase">Servicios</span></h1>
+                
+               
+            </div>
+            <div class="row g-4">
+                {% for service in servicios  %}
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="room-item shadow rounded overflow-hidden">
+                        <div class="position-relative">
+                            <img class="img-fluid" src="{{service.image.url}}" alt="">
+                            
+                        </div>
+                        <div class="p-4 mt-2">
+                            <div class="d-flex justify-content-between mb-3">
+                                <h5 class="mb-0">{{service.service}}</h5>
+                               
+                            </div>
+                          
+                            <p class="text-body mb-3">{{service.content}}</p>
+                            <p class="mb-0 mbt">
+                                <span class="section-heading-under">Personal a cargo 
+                                  <!--<em><a href="#" class="link">General</a>, <a href="#" class="link">Ofertas</a></em></span>-->
+                                  
+                                  {% for personal in service.responsible.all %}
+                                  {{personal.name}} {% if not forloop.last %},{% endif %}</spam>
+                                  {% endfor %}
+                              </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+               
+            </div>
+        </div>
+    </div>
+
+
+  
+
+
+{% endblock  %}
